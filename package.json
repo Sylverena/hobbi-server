@@ -1,0 +1,18 @@
+{
+  "name": "hobbi-server",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Serena Zapata",
+  "license": "GPL-3.0-or-later",
+  "description": "Server backend for the hoBBi app",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "debug": "^4.3.7",
+    "express": "^4.21.0"
+  }
+}

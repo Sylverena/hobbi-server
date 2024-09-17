@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+// Module dependencies
+
+let app = require('../server');
+let debug = require('debug')('hobbi-me:server')
+let http = require('http');
+
+// Get port from process and normalize within express
+
+let port = normalizePort(process.env.PORT || 3000);
+app.set('port', port);
+
+/**
+ * Helper to ensure that port provided from env parsed and actually is a number
+ *
+ * @param val Port to normalize
+ * @returns {number|*|boolean} the port number if it is a number and parses, false if not
+ */
+function normalizePort(val) {
+    let port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
+
+
