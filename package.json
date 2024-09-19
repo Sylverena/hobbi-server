@@ -1,18 +1,15 @@
 {
   "name": "hobbi-server",
-  "version": "0.0.1",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "keywords": [],
-  "author": "Serena Zapata",
-  "license": "GPL-3.0-or-later",
-  "description": "Server backend for the hoBBi app",
   "dependencies": {
-    "body-parser": "^1.20.3",
-    "cors": "^2.8.5",
-    "debug": "^4.3.7",
-    "express": "^4.21.0"
+    "cookie-parser": "~1.4.4",
+    "debug": "4.3.5",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
   }
 }
