@@ -19,7 +19,7 @@ const textBlockSchema = new Schema({
    }
 }, {_id: false});
 
-const imageBodySchema = new Schema({
+const imageBlockSchema = new Schema({
     imageId: {
         type: Schema.Types.ObjectId,
         required: true, // This ID points to the file in GridFS
@@ -29,3 +29,5 @@ const imageBodySchema = new Schema({
 }, { _id: false });
 
 exports.blockSchema = blockSchema;
+exports.textBlockSchema = textBlockSchema;
+exports.imageBlockSchema = imageBlockSchema;
