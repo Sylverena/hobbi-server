@@ -3,10 +3,10 @@ const router = express.Router();
 
 // todo image api
 
-const profileController = require('../controllers/profileController');
+const profileController = require('../controllers/profileImageController');
 const postImageController = require('../controllers/postImageController');
 
-// /api/images todo controller export logic
+// /api/images todo controller export logic, look at carefinder repo
 router.get('/profiles/:id', profileController);
 router.get('/post-images/:id', postImageController);
 
