@@ -10,14 +10,18 @@ const hobbiPostSchema = new Schema({
     body: {
         type: [postbodySchemas.blockSchema],
         required: true,
-        validate: [(val) => {return val.length <= 10}, '{PATH} exceeds 10 block limit']
+        validate: [(val) => {
+            return val.length <= 10
+        }, '{PATH} exceeds 10 block limit']
     },
+    bb: Schema.Types.ObjectId,
     meta: {
         required: true,
         stars: Number,
-        comments: {
-            type: [Schema.Types.ObjectId]
-        }
+        comments: [{
+            poster: Schema.Types.ObjectId,
+            text: String
+        }]
     }
 }, {timestamps: true});
 
