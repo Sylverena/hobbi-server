@@ -29,5 +29,4 @@ const hobbiPostSchema = new Schema({
 hobbiPostSchema.path('body').discriminator('text', postbodySchemas.textBlockSchema);
 hobbiPostSchema.path('body').discriminator('image', postbodySchemas.imageBlockSchema);
 
-const postModel = mongoose.model('hobbi-post', hobbiPostSchema);
-module.exports = postModel;
+module.exports = mongoose.model('hobbi-posts', hobbiPostSchema);

@@ -1,4 +1,4 @@
-const postModel = require('../models/postbody-schemas');
+const postModel = require('../models/hobbi-post-model');
 const apiKeyModel = require('../models/apikey-model');
 const mongoose = require('mongoose');
 
@@ -7,8 +7,7 @@ const postController = {
         const apiKey = req.header("x-api-key");
         console.log(apiKey)
 
-        if (apiKey === undefined)
-        {
+        if (apiKey === undefined) {
             const error = new Error("Bad request. Missing x-api-key header.")
             return res.status(400).json({
                 status: 400,
@@ -17,10 +16,9 @@ const postController = {
             });
         }
 
-        const api_doc = await apiKeyModel.find({api_key: apiKey} ).exec();
+        const api_doc = await apiKeyModel.find({api_key: apiKey}).exec();
 
-        if (!api_doc)
-        {
+        if (!api_doc) {
             const error = new Error("Unauthorized")
             return res.status(403).json({
                 status: 403,
@@ -45,7 +43,46 @@ const postController = {
 
     },
     post: async (req, res) => { //todo
+        const apiKey = req.header("x-api-key");
+        console.log(apiKey)
 
+        if (apiKey === undefined) {
+            const error = new Error("Bad request. Missing x-api-key header.")
+            return res.status(400).json({
+                status: 400,
+                error: error.message,
+                response: {}
+            });
+        }
+
+        const api_doc = await apiKeyModel.find({api_key: apiKey}).exec();
+
+        if (!api_doc) {
+            const error = new Error("Unauthorized")
+            return res.status(403).json({
+                status: 403,
+                error: error.message,
+                response: {}
+            });
+        }
+
+        if (!req.is('application/json'))
+            return res.status(400).json({message: 'Bad request'})
+
+        try {
+            const hobbiPost = new postModel(req.body);
+
+            hobbiPost.validateSync();
+
+            const savedPost = await hobbiPost.save();
+
+            return res.status(200).json({response: savedPost});
+        } catch (e) {
+            if (e.name === 'ValidationError')
+                return res.status(400).send({error: 'Validation failed', details: e.errors});
+
+            res.status(500).send({error: 'Server error', details: e.message});
+        }
     }
 }
 
