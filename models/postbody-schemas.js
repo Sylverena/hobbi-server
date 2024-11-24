@@ -19,7 +19,7 @@ const textBlockSchema = new Schema({
    }
 }, {_id: false});
 
-const imageBlockSchema = new Schema({
+const imageBlockSchema = new Schema({ //todo refactor into link
     imageId: {
         type: Schema.Types.ObjectId,
         required: true, // This ID points to the file in GridFS

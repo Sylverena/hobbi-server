@@ -1,5 +1,6 @@
 const postModel = require('../models/hobbi-post-model');
 const apiKeyModel = require('../models/apikey-model');
+const bbModel = require('../models/bbModel');
 const mongoose = require('mongoose');
 
 const postController = {
@@ -16,7 +17,7 @@ const postController = {
             });
         }
 
-        const api_doc = await apiKeyModel.find({api_key: apiKey}).exec();
+        const api_doc = await apiKeyModel.findOne({api_key: apiKey}).exec();
 
         if (!api_doc) {
             const error = new Error("Unauthorized")
@@ -27,22 +28,39 @@ const postController = {
             });
         }
 
-        try {
-            const filter = {_id: new mongoose.Types.ObjectId(req.params.id)};
+        if(!req.params.name) {
+            try {
+                const filter = {_id: new mongoose.Types.ObjectId(req.params.id)};
 
-            const post = await postController.findOne(filter);
+                const post = await postModel.findOne(filter).exec();
+
+                if (!post)
+                    return res.status(404).json({})
+
+                res.json(post);
+
+            } catch (e) {
+                return res.status(400).json({message: 'Invalid ID'})
+            }
+        }
+        else {
+            const bbFilter = {name: req.params.name};
+
+            const bbId = await bbModel.findOne(bbFilter).exec();
+            if (!bbId)
+                return res.status(404).json({message: 'BB not found'});
+
+            const postFilter = {bb: bbId};
+
+            const post = await postModel.find(postFilter);
 
             if (!post)
                 return res.status(404).json({})
 
             res.json(post);
-
-        } catch (e) {
-            return res.status(400).json({message: 'Invalid ID'})
         }
-
     },
-    post: async (req, res) => { //todo
+    post: async (req, res) => {
         const apiKey = req.header("x-api-key");
         console.log(apiKey)
 
@@ -55,7 +73,7 @@ const postController = {
             });
         }
 
-        const api_doc = await apiKeyModel.find({api_key: apiKey}).exec();
+        const api_doc = await apiKeyModel.findOne({api_key: apiKey}).exec();
 
         if (!api_doc) {
             const error = new Error("Unauthorized")

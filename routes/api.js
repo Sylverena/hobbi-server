@@ -11,7 +11,7 @@ router.get('/posts/:id', postController.get);
 router.post('/posts', postController.post);
 router.get('/bbs', bbController.get);
 router.get('/bbs/:name', bbController.get);
-router.get('/bbs/posts', postController.get);
+router.get('/bbs/:name/posts', postController.get);
 
 
 module.exports = router;

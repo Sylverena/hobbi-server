@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const ProfileSchema = new Schema({
+const ProfileSchema = new Schema({ //todo controller and endpoints for this
     username: {
         type: String,
         required: true,
@@ -24,5 +24,4 @@ const ProfileSchema = new Schema({
     }
 });
 
-const profileModel = mongoose.model("profile", ProfileSchema);
-module.exports = profileModel;
+module.exports = mongoose.model('profile', ProfileSchema);
