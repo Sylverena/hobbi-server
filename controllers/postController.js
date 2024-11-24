@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const postController = {
     get: async (req, res) => {
         const apiKey = req.header("x-api-key");
-        console.log(apiKey)
 
         if (apiKey === undefined) {
             const error = new Error("Bad request. Missing x-api-key header.")
@@ -28,7 +27,7 @@ const postController = {
             });
         }
 
-        if(!req.params.name) {
+        if(!req.params?.name) { // if it is /api/bbs/:name/posts
             try {
                 const filter = {_id: new mongoose.Types.ObjectId(req.params.id)};
 
