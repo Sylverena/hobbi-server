@@ -19,11 +19,10 @@ const textBlockSchema = new Schema({
    }
 }, {_id: false});
 
-const imageBlockSchema = new Schema({ //todo refactor into link
-    imageId: {
-        type: Schema.Types.ObjectId,
-        required: true, // This ID points to the file in GridFS
-        ref: 'post-uploads.files'
+const imageBlockSchema = new Schema({
+    imageLink: {
+        type: String,
+        required: true,
     },
     alt: String
 }, { _id: false });
