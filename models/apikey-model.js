@@ -6,4 +6,4 @@ const apiKeySchema = new Schema({
     access_level: {type: Number, required: true},
 })
 
-module.exports = mongoose.model('api-keys', apiKeySchema);
+module.exports = mongoose.model('keys', apiKeySchema);
