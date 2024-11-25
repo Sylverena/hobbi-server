@@ -28,7 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-await mongoose.connect('mongodb://localhost:27017/hobbi', {useNewUrlParser: true});
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/hobbi', {useNewUrlParser: true});
 
 // routes definition
 app.use('/', indexRouter);

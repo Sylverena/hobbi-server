@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Posts are organized in block format. That is, a post can contain a finite number of blocks that are either paragraphs
@@ -24,7 +24,6 @@ const imageBlockSchema = new Schema({
         type: String,
         required: true,
     },
-    alt: String
 }, { _id: false });
 
 exports.blockSchema = blockSchema;

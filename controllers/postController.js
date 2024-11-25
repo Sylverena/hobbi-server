@@ -36,8 +36,7 @@ const postController = {
                 if (!post)
                     return res.status(404).json({})
 
-                res.json(post);
-
+                return res.json(post);
             } catch (e) {
                 return res.status(400).json({message: 'Invalid ID'})
             }
@@ -61,7 +60,6 @@ const postController = {
     },
     post: async (req, res) => {
         const apiKey = req.header("x-api-key");
-        console.log(apiKey)
 
         if (apiKey === undefined) {
             const error = new Error("Bad request. Missing x-api-key header.")
@@ -88,12 +86,10 @@ const postController = {
 
         try {
             const hobbiPost = new postModel(req.body);
-
             hobbiPost.validateSync();
-
             const savedPost = await hobbiPost.save();
 
-            return res.status(200).json({response: savedPost});
+            return res.status(201).json({response: savedPost});
         } catch (e) {
             if (e.name === 'ValidationError')
                 return res.status(400).send({error: 'Validation failed', details: e.errors});
