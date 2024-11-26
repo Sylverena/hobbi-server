@@ -8,6 +8,7 @@ const ProfileSchema = new Schema({ //todo controller and endpoints for this
         required: true,
         unique: true,
         trim: true,
+        caseSensitive: false
     },
     password: {
         type: String,
