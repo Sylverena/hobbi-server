@@ -26,11 +26,11 @@ const profileController = {
             });
         }
 
-        if (!req.params?.id)
-            return res.status(400).json({message: 'Missing ID'})
+        if (!req.params?.name)
+            return res.status(400).json({message: 'Missing username'})
 
         try {
-            const filter = {_id: new mongoose.Types.ObjectId(req.params.id)};
+            const filter = {username: `${req.params.name}`};
 
             const profile = await profileModel.findOne(filter).exec();
 

@@ -13,7 +13,7 @@ router.post('/posts', postController.post);
 router.get('/bbs', bbController.get);
 router.get('/bbs/:name', bbController.get);
 router.get('/bbs/:name/posts', postController.get);
-router.get('/profiles/:id', profileController.get);
+router.get('/profiles/:name', profileController.get);
 router.post('/profiles', profileController.post);
 router.patch('/profiles/:id', profileController.patch);
 
