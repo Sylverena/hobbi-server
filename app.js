@@ -1,3 +1,4 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -29,7 +30,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/hobbi', {useNewUrlParser: true});
+mongoose.connect(`${process.env.CONN_STRING}`, {});
 
 // routes definition
 app.use('/', indexRouter);
