@@ -72,7 +72,7 @@ const profileController = {
             return res.status(400).json({message: 'Bad request'})
 
         try {
-            const hobbiProfile = new profileModel(req.body);
+            const hobbiProfile = new profileModel(req.body.json);
             hobbiProfile.validateSync();
             const savedProfile = await hobbiProfile.save();
 
