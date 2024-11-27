@@ -14,6 +14,14 @@ const ProfileSchema = new Schema({ //todo controller and endpoints for this
         type: String,
         required: true
     },
+    firstname: {
+        type: String,
+        required: true,
+    },
+    lastname: {
+        type: String,
+        required: true,
+    },
     bbs: [Schema.Types.ObjectId],
     profileImageLink: {
         type: String,
