@@ -76,7 +76,7 @@ const profileController = {
             hobbiProfile.validateSync();
             const savedProfile = await hobbiProfile.save();
 
-            return res.status(200).json({response: savedProfile});
+            return res.status(201).json({response: savedProfile});
 
         } catch (e) {
             if (e.name === 'ValidationError')

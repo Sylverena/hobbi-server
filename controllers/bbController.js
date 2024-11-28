@@ -42,4 +42,4 @@ const bbController = {
     }
 };
 
-module.exports = postController;
+module.exports = bbController;
